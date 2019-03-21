@@ -1,9 +1,5 @@
 # PhoneNumberEncoder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/phone_number_encoder`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem can be used to convert the 10 digit numbers into possible combinations of letters.
 
 ## Development
 
@@ -32,4 +28,38 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/phone_number_encoder.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gauravguptaa121/phone_number_encoder.
+
+## Execution Log
+
+```
+~/projects/phone_number_encoder (master) $ bin/console
+2.6.0 :001 > require 'benchmark'
+ => true
+2.6.0 :002 > puts Benchmark.measure { PhoneNumberEncoder::NumberEncoder.new.encoded_words(6686787825) }
+  0.720749   0.027921   0.748670 (  0.749057)
+ => nil
+```
+
+## Spec Execution Log
+
+```
+PhoneNumberEncoder::NumberEncoder
+  Instance Methods
+    #encoded_words
+      should not accept invalid numbers
+      should return possible words
+
+PhoneNumberEncoder
+  has a version number
+
+Finished in 2.03 seconds (files took 0.22241 seconds to load)
+3 examples, 0 failures
+```
+## Idea Behind Implementation
+
+1. First of All get all the sets of sub-number in which a number can be divided.
+2. Find the respective letters for each digit of sub-number.
+3. Create the possible combination of words for each sub-number.
+4. Compare each word with the dictionary and kept only those words which are present in the dictionary.
+5. Now make the set of the sorted words for each number set.
